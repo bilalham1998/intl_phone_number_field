@@ -5,7 +5,7 @@ class PhoneConfig {
   TextStyle textStyle, hintStyle;
   double radius, borderWidth;
   int? errorTextMaxLength;
-  Decoration? decoration;
+  InputDecoration? decoration;
   Color? backgroundColor;
   String? hintText;
   bool autoFocus, showCursor;

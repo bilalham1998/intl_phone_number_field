@@ -10,8 +10,10 @@ class CountryCodeBottomSheet extends StatefulWidget {
   final Function(CountryCodeModel countryCodeModel) onSelected;
   final CountryCodeModel? selected;
   final DialogConfig dialogConfig;
+  final InputDecoration decoration;
   const CountryCodeBottomSheet(
       {super.key,
+      required this.decoration,
       required this.countries,
       required this.onSelected,
       this.selected,
@@ -57,6 +59,8 @@ class _CountryCodeBottomSheetState extends State<CountryCodeBottomSheet> {
               ),
               const SizedBox(height: 14),
               RixaTextField(
+                code: '',
+                decoration: widget.decoration,
                 hintText: widget.dialogConfig.searchHintText,
                 controller: searchController,
                 textStyle: widget.dialogConfig.searchBoxTextStyle,
@@ -77,7 +81,7 @@ class _CountryCodeBottomSheetState extends State<CountryCodeBottomSheet> {
                 },
                 isUnderline: false,
                 noInputBorder: true,
-                backgroundColor: widget.dialogConfig.searchBoxBackgroundColor,
+                backgroundColor: Colors.deepOrange,
               ),
             ]),
           ),

@@ -26,7 +26,7 @@ class RixaTextField extends StatelessWidget {
   final bool autoFocus;
   final List<TextInputFormatter> inputFormatters;
   final FocusNode? focusNode;
-  final Decoration? decoration;
+  late InputDecoration? decoration;
   final int? errorMaxLines;
   final InputBorder? errorBorder;
   final TextStyle? errorStyle;
@@ -34,11 +34,13 @@ class RixaTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextStyle? floatingLabelStyle;
   final TextInputAction textInputAction;
+  late String? code;
   RixaTextField({
     super.key,
     required this.hintText,
     required this.controller,
     this.maxLines = 1,
+    this.code,
     this.errorMaxLines,
     this.errorStyle,
     this.errorText,
@@ -115,14 +117,39 @@ class RixaTextField extends StatelessWidget {
                 : InputBorder.none;
   @override
   Widget build(BuildContext context) {
+    var newDec = InputDecoration(
+      suffixIcon: decoration?.suffixIcon,
+
+      focusColor: decoration?.focusColor,
+      contentPadding: decoration?.contentPadding,
+      border: decoration?.border,
+      focusedBorder: decoration?.focusedBorder,
+      enabledBorder: decoration?.enabledBorder,
+      hintText: decoration?.hintText,
+      fillColor: decoration?.fillColor,
+      filled: decoration?.filled,
+      hintStyle: decoration?.hintStyle,
+
+      prefixIcon:code!.length> 0? Container(
+        width: 15,
+        alignment: Alignment.center, child: Text(code! ?? '', style: TextStyle(color: Color(0xff22162B) , fontSize: 14)),): null ,
+
+
+
+
+    );
+
     return Container(
       width: width,
-      decoration: decoration ??
-          BoxDecoration(
-              color: backgroundColor,
-              borderRadius: BorderRadius.circular(radius)),
+
+      // decoration: decoration ??
+      //     BoxDecoration(
+      //         color: backgroundColor,
+      //         borderRadius: BorderRadius.circular(radius)),
       padding: padding,
-      child: TextField(
+      child: TextFormField(
+
+        decoration: newDec,
         controller: controller,
         maxLines: !expands ? maxLines : null,
         minLines: minLines,
@@ -138,23 +165,10 @@ class RixaTextField extends StatelessWidget {
         autocorrect: false,
         enableSuggestions: false,
         inputFormatters: inputFormatters,
-        decoration: InputDecoration(
-            border: const OutlineInputBorder(),
-            hintText: hintText,
-            contentPadding: innerPadding,
-            hintStyle: hintStyle,
-            enabledBorder: enabledBorder,
-            focusedBorder: focusedBorder,
-            labelText: labelText,
-            labelStyle: labelStyle,
-            errorMaxLines: errorMaxLines,
-            focusedErrorBorder: errorBorder,
-            errorBorder: errorBorder,
-            errorText: errorText,
-            errorStyle: errorStyle,
-            suffixIcon: suffixIcon,
-            prefixIcon: prefixIcon,
-            floatingLabelStyle: floatingLabelStyle),
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+
+        validator: validator,
+
         onChanged: (text) {
           if (onChanged != null) onChanged!(text);
         },
@@ -237,6 +251,7 @@ class RixaTextFieldFull extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         RixaTextField(
+          code: '',
           hintText: hintText,
           labelText: labelText,
           controller: controller,
