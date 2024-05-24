@@ -183,7 +183,7 @@ class _InternationalPhoneNumberInputState
                         width: double.infinity,
                         height: double.infinity,
                         decoration: widget.countryConfig.decoration,
-                        padding: EdgeInsets.only(left: 7, right: 7),
+                        padding: EdgeInsets.only(left: 5, right: 5),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
