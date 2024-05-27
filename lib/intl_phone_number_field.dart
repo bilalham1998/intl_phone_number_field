@@ -192,8 +192,8 @@ class _InternationalPhoneNumberInputState
                               isFlat: widget.countryConfig.flatFlag,
                               size: widget.countryConfig.flagSize,
                             ),
-                            const SizedBox(width: 6),
-                            Icon(Icons.arrow_drop_down , size: 25,color: Color(0xFF1C2230),),
+                            const SizedBox(width: 3),
+                            Icon(Icons.arrow_drop_down , size: 20,color: Color(0xFF1C2230),),
 
                             // Text(
                             //   selected.dial_code,
