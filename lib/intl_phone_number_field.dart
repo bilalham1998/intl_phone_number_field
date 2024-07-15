@@ -92,6 +92,8 @@ class _InternationalPhoneNumberInputState
       String? error = widget.validator!(IntPhoneNumber(
           code: selected.code,
           dial_code: selected.dial_code,
+          min_length: selected!.min_length!,
+          max_length: selected!.max_length!,
           number: widget.controller.text.trimLeft().trimRight()));
       if (errorText != error) {
         errorText = error;
@@ -115,6 +117,8 @@ class _InternationalPhoneNumberInputState
       String? error = widget.validator!(IntPhoneNumber(
           code: selected.code,
           dial_code: selected.dial_code,
+          min_length: selected!.min_length!,
+          max_length: selected!.max_length!,
           number: widget.controller.text.trimLeft().trimRight()));
       if (errorText != error) {
         errorText = error;
@@ -163,6 +167,8 @@ class _InternationalPhoneNumberInputState
                                         widget.onInputChanged!(IntPhoneNumber(
                                             code: selected.code,
                                             dial_code: selected.dial_code,
+                                            min_length: selected!.min_length!,
+          max_length: selected!.max_length!,
                                             number: widget.controller.text
                                                 .trimLeft()
                                                 .trimRight()));
@@ -250,12 +256,16 @@ class _InternationalPhoneNumberInputState
                         widget.onInputChanged!(IntPhoneNumber(
                             code: selected.code,
                             dial_code: selected.dial_code,
+                            min_length: selected!.min_length!,
+          max_length: selected!.max_length!,
                             number: text.trimLeft().trimRight()));
                       }
                       if (widget.validator != null) {
                         String? error = widget.validator!(IntPhoneNumber(
                             code: selected.code,
                             dial_code: selected.dial_code,
+                            min_length: selected!.min_length!,
+          max_length: selected!.max_length!,
                             number: text.trimLeft().trimRight()));
                         if (errorText != error) {
                           setState(() {
@@ -300,9 +310,12 @@ class _InternationalPhoneNumberInputState
 
 class IntPhoneNumber {
   String code, dial_code, number;
+    int  min_length , max_length;
   IntPhoneNumber(
-      {required this.code, required this.dial_code, required this.number});
+      {required this.code, required this.dial_code, required this.number,required this.min_length ,required this.max_length });
   String get fullNumber => "$dial_code $number";
+  int get minLength => min_length;
+  int get maxLength => max_length;
   String get rawNumber => number.replaceAll(" ", "");
   String get rawDialCode => dial_code.replaceAll("+", "");
   String get rawFullNumber =>

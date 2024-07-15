@@ -9,9 +9,11 @@ class CountryCodeModel {
   final String name;
   final String dial_code;
   final String code;
+    final int? min_length;
+  final int? max_length;
 
   CountryCodeModel(
-      {required this.name, required this.dial_code, required this.code});
+      {required this.name, required this.dial_code, required this.code, this.min_length , this.max_length});
 
   CountryCodeModel fromJson(Map<String, dynamic> json) {
     return _$CountryCodeModelFromJson(json);

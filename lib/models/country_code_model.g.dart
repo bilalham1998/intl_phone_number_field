@@ -11,6 +11,8 @@ CountryCodeModel _$CountryCodeModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       dial_code: json['dial_code'] as String,
       code: json['code'] as String,
+         min_length: json['min_length'] as int,
+      max_length: json['max_length'] as int,
     );
 
 Map<String, dynamic> _$CountryCodeModelToJson(CountryCodeModel instance) =>
