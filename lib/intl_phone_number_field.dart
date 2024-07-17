@@ -235,12 +235,14 @@ class _InternationalPhoneNumberInputState
                     floatingLabelStyle: widget.phoneConfig.floatingLabelStyle,
                     radius: widget.phoneConfig.radius,
                     isUnderline: false,
-                    textInputType: TextInputType.number,
+                    textInputType: TextInputType.numberWithOptions(decimal: true),
                     expands: false,
                     errorColor: Colors.red,
                     autoFocus: widget.phoneConfig.autoFocus,
                     inputFormatters: [
                       ...widget.inputFormatters,
+                      CommaNumberInputFormatter(),
+           
                       if (widget.formatter != null) widget.formatter!
                     ],
                     focusedColor: errorText != null
@@ -306,6 +308,8 @@ class _InternationalPhoneNumberInputState
     }));
     setState(() {});
   }
+
+ 
 }
 
 class IntPhoneNumber {
@@ -320,4 +324,20 @@ class IntPhoneNumber {
   String get rawDialCode => dial_code.replaceAll("+", "");
   String get rawFullNumber =>
       fullNumber.replaceAll(" ", "").replaceAll("+", "");
+}
+
+ class CommaNumberInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    // Allow digits and commas
+    final RegExp regExp = RegExp(r'^[0-9]*$');
+
+    // If the new value matches the regular expression, return it
+    if (regExp.hasMatch(newValue.text)) {
+      return newValue;
+    }
+
+    // If it doesn't match, return the old value
+    return oldValue;
+  }
 }
