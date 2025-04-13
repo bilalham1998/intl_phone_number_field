@@ -52,6 +52,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.onInputChanged,
       this.loadFromJson,
       this.formatter,
+      this.language,
       this.validator,
       this.inactive = false,
       DialogConfig? dialogConfig,
