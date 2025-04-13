@@ -40,6 +40,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final Future<String?> Function()? loadFromJson;
   final String? Function(dynamic )? validator;
   final InputDecoration? decoration;
+  String? language;
   InternationalPhoneNumberInput(
       {super.key,
       TextEditingController? controller,
@@ -218,7 +219,7 @@ class _InternationalPhoneNumberInputState
                   // height:(widget.height ?? 0.0) - 15.0,
                   child:
                   RixaTextField(
-                    code: selected.dial_code,
+                    code:  widget.language == "ar" ? "\u200E" + (selected.dial_code):selected.dial_code ,
                     color: Colors.green,
                     validator: widget.validator,
                     hintText: widget.phoneConfig.hintText ?? "",
