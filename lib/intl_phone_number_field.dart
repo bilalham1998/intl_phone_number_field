@@ -158,6 +158,7 @@ class _InternationalPhoneNumberInputState
                               builder: (context) {
                                 return SingleChildScrollView(
                                   child: CountryCodeBottomSheet(
+                                    language: widget.language,
                                     decoration: widget!.decoration!,
                                     countries: countries!,
                                     selected: selected,

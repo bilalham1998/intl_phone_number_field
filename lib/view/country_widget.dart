@@ -7,10 +7,12 @@ class CountryWidget extends StatelessWidget {
   final CountryCodeModel countryCodeModel;
   final DialogConfig dialogConfig;
   final bool isSelected;
-  const CountryWidget(
+  String? language;
+  CountryWidget(
       {required this.countryCodeModel,
       required this.dialogConfig,
       required this.isSelected,
+      this.language,
       super.key});
 
   @override
@@ -21,7 +23,7 @@ class CountryWidget extends StatelessWidget {
       padding: const EdgeInsets.only(left: 40, right: 55),
       child: Row(children: [
         FlagView(
-            countryCodeModel: countryCodeModel,
+            countryCodeModel:  countryCodeModel,
             isFlat: dialogConfig.flatFlag,
             size: dialogConfig.itemFlagSize),
         const SizedBox(width: 25),
@@ -34,7 +36,7 @@ class CountryWidget extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         Text(
-          countryCodeModel.dial_code,
+          (language != null && language == "ar") ?( "\u200E" + countryCodeModel .dial_code): countryCodeModel.dial_code,
           style: dialogConfig.textStyle,
         )
       ]),

@@ -11,12 +11,15 @@ class CountryCodeBottomSheet extends StatefulWidget {
   final CountryCodeModel? selected;
   final DialogConfig dialogConfig;
   final InputDecoration decoration;
-  const CountryCodeBottomSheet(
+    String? language;
+
+  CountryCodeBottomSheet(
       {super.key,
       required this.decoration,
       required this.countries,
       required this.onSelected,
       this.selected,
+      this.language,
       required this.dialogConfig});
 
   @override
@@ -102,6 +105,7 @@ class _CountryCodeBottomSheetState extends State<CountryCodeBottomSheet> {
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: CountryWidget(
+                        language:widget.language,
                           countryCodeModel: widget.selected!,
                           isSelected: true,
                           dialogConfig: widget.dialogConfig)),
@@ -118,6 +122,7 @@ class _CountryCodeBottomSheetState extends State<CountryCodeBottomSheet> {
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: CountryWidget(
+                        language:widget.language,
                           countryCodeModel: country,
                           isSelected: false,
                           dialogConfig: widget.dialogConfig))
